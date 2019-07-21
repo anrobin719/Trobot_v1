@@ -1,0 +1,53 @@
+.Loading {
+    height: 100vh;
+    margin: 0;
+}
+
+.loadingBar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loadingBar div {
+    display: inline-block;
+    margin: 0 4px;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+
+.loadingBar div:nth-child(1) {
+    background-color: #34a6db;
+    animation-delay: 0;
+}
+
+.loadingBar div:nth-child(2) {
+    background-color: #3445db;
+    animation-delay: 0.09s;
+}
+
+.loadingBar div:nth-child(3) {
+    background-color: #9034db;
+    animation-delay: .18s;
+}
+
+.loadingBar div:nth-child(4) {
+    background-color: #cd34db;
+    animation-delay: .27s;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1, 2.2);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}

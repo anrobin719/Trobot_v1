@@ -1,0 +1,47 @@
+.inbox {
+    margin: 0 auto;
+    width: 70%;
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+}
+
+.Footer {
+    height: 300px;
+    background-color: rgb(56, 56, 56);
+    color: rgb(218, 218, 218);
+    position: relative;
+    bottom: 0;
+    left: 0;
+}
+
+.Footer h4 {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    margin: 0;
+    font-size: 32px;
+}
+
+blockquote {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+blockquote div {
+    margin-top: 32px;
+}
+
+blockquote h5 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+blockquote p {
+    margin: 0;
+    font-size: 14px;
+}

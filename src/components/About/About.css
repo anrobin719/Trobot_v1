@@ -1,0 +1,84 @@
+.About {
+    width: 100%;
+    margin-top: 52px;
+}
+
+.inbox {
+    margin: 0 auto;
+    width: 70%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+section h2, h3, p, div {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/* gradient header */
+.head {
+    height: 400px;
+    background-image: linear-gradient(to right, rgb(161, 84, 233), rgb(120, 100, 235),rgb(76, 143, 230));
+    color: #fff;
+}
+
+.headBlock {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.headBlock h2{
+    margin-bottom: 16px;
+    font-size: 54px;
+    font-weight: 600;
+}
+
+.headBlock p {
+    font-size: 22px;
+}
+
+
+/* container */
+
+.cont {
+    margin-bottom: 300px;
+}
+
+.contBlock {
+    margin:  200px 0 80px;
+}
+
+.contBlock h3 {
+    margin-bottom: 16px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.contBlock p {
+    line-height: 24px;
+}
+
+.cont {
+    text-align: center;
+}
+
+.box2 {
+    display: inline-block;
+    width: 48%;
+    height: 300px;
+    margin: 0 1%;
+    background-color: #aaa;
+}
+
+.box4 {
+    display: inline-block;
+    width: 23%;
+    height: 200px;
+    margin: 0 1%;
+    background-color: #aaa;
+}

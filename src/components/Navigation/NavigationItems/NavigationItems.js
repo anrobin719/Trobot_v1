@@ -5,8 +5,12 @@ import classes from './NavigationItems.css';
 
 const NavigationItems = () => (
     <ul className={classes.NavigationItems}>
-        <NavigationItem>Pin</NavigationItem>
-        <NavigationItem>Sign in</NavigationItem>
+        <NavigationItem
+            link="/about">About us</NavigationItem>
+        <NavigationItem
+            link="/pin">My Pin</NavigationItem>
+        <NavigationItem
+            link="/signIn">Sign in</NavigationItem>
     </ul>
 );
 

@@ -1,13 +1,26 @@
 import React from 'react';
 
 import classes from './Trouble.css';
+import thumb from '../../assets/images/thumb.svg';
+import pin from '../../assets/images/pin.svg';
+import share from '../../assets/images/share.svg';
+import comment from '../../assets/images/comment.svg';
 
 const Trouble = ( props ) => {
     return (
-        <article className={classes.Trouble}>
-            <h2>{props.heading}</h2>
-            <p className={classes.tag}>{props.tag}</p>
-        </article>
+        <div className={classes.Trouble}>
+            <article>
+                <h2>{props.heading}</h2>
+                <span>{props.tag}</span>
+            </article>
+
+            <footer className={classes.footer}>
+                <div><img src={thumb} alt="thumb" />Thumb</div>
+                <div><img src={pin} alt="pin" />Pin</div>
+                <div><img src={share} alt="share" />Share</div>
+                <div><img src={comment} alt="comment" />2</div>
+            </footer>
+        </div>
     );
 }
 

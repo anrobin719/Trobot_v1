@@ -1,0 +1,18 @@
+.NavigationItem {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-weight: 400;
+}
+
+.NavigationItem a {
+    margin: 17px 0 17px 32px;
+    box-sizing: border-box;
+    color: #555;
+    text-decoration: none;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a.active {
+    color: #450dac;
+}
