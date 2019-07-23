@@ -1,12 +1,27 @@
 .Troubles {
-    padding: 100px 0;
     box-sizing: border-box;
+}
+
+.inbox::after {
+    content: '';
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
+.inbox {
+    width: 70%;
+    padding-top: 52px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background-color: #fff;
 }
 
 .floatBtnBox {
     position: fixed;
     bottom: 30px;
     right: 60px;
+    z-index: 100;
 }
 
 /* .Troubles aside {

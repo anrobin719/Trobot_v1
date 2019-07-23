@@ -1,7 +1,14 @@
 .App {
-  text-align: center;
-  background-color: #f1f0f5;
-  color: #222;
+  /* background-color: rgb(246, 246, 246); */
+  background-image: linear-gradient(to bottom, rgb(225, 231, 245), rgb(227, 225, 245),rgb(234, 225, 245));
+
+  color: #484848;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-/* bgc: #f7f7f8 */
+h1, h2, h3, h4, h5, h6, p, blockquote {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}

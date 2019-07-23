@@ -6,21 +6,15 @@
 .inbox {
     margin: 0 auto;
     width: 70%;
-    box-sizing: border-box;
     height: 100%;
-}
-
-section h2, h3, p, div {
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
+    box-sizing: border-box;
 }
 
 
 /* gradient header */
 .head {
     height: 400px;
-    background-image: linear-gradient(to right, rgb(161, 84, 233), rgb(120, 100, 235),rgb(76, 143, 230));
+    background-image: linear-gradient(to right, rgb(161, 84, 233), rgb(125, 100, 235),rgb(93, 145, 241));
     color: #fff;
 }
 
@@ -40,17 +34,26 @@ section h2, h3, p, div {
 
 .headBlock p {
     font-size: 22px;
+    font-weight: 300;
 }
 
 
 /* container */
 
 .cont {
-    margin-bottom: 300px;
+    padding-top: 200px;
+    padding-bottom: 300px;
+    box-sizing: border-box;
+    background-color: #fff;
+    height: 100%;
 }
 
 .contBlock {
     margin:  200px 0 80px;
+}
+
+.contBlock:first-child {
+    margin-top: 0;
 }
 
 .contBlock h3 {
@@ -61,6 +64,7 @@ section h2, h3, p, div {
 
 .contBlock p {
     line-height: 24px;
+    font-weight: 300;
 }
 
 .cont {

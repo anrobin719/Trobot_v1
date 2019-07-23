@@ -10,6 +10,23 @@
     transition: all .1s ease-in-out;
 }
 
+
+/* btnType : circleBtn - float button  */
+.circleBtn {
+    width: 56px;
+    height: 56px;
+    margin: 24px 0;
+    font-weight: 200;
+    border-radius: 50%;
+    background-color: #6a45e4;
+    
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
+    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
+    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
+}
+
 .circleBtn:hover {
     transform: translateY(-4px);
     -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.20), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -19,22 +36,39 @@
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.20), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.circleBtn {
-    width: 56px;
-    height: 56px;
-    margin: 24px 0;
-    font-weight: 200;
-    border-radius: 50%;
-    background-color: #6a45e4;
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
-    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
-    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
-    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16), 0 6px 8px rgba(0, 0, 0, 0.22);
-}
-
 .Button img {
     margin: 0;
     padding: 0;
     height: 24px;
+}
+
+/* btnType : rectangular - signIn > submit, join */
+.submit {
+    margin: 0 8px;
+    padding: .5rem 1.2rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border-radius: .25rem;
+    background-color: #6fa7e4;
+    display: inline-block;
+}
+
+.submit:hover {
+    background-color: #4f8bca;
+}
+
+.submitBorder {
+    margin: 0 8px;
+    padding: .5rem 1.2rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #6fa7e4;
+    border-radius: .25rem;
+    background-color: transparent;
+    border: 1px solid #6fa7e4;
+    display: inline-block;
+}
+
+.submitBorder:hover {
+    background-color: rgba(220, 229, 247, 0.5);
 }

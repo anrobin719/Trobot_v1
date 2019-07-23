@@ -18,7 +18,7 @@ class Troubles extends Component {
     componentDidMount () {
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(res => {
-                const troubles = res.data.slice(0, 10);
+                const troubles = res.data.slice(0, 20);
                 const updateTrouble = troubles.map( trb => {
                     return {
                         ...trb,
@@ -55,9 +55,9 @@ class Troubles extends Component {
                         <li>data</li>
                     </ul>
                 </aside> */}
-
-               {troubles}
-
+                <div className={classes.inbox}>
+                    {troubles}
+                </div>
 
                <div className={classes.floatBtnBox}>
                     <Button

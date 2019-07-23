@@ -1,0 +1,56 @@
+.Troubles {
+    box-sizing: border-box;
+}
+
+.inbox::after {
+    content: '';
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
+.inbox {
+    width: 70%;
+    height: 100vh;
+    padding-top: 52px;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+
+/* PROFILE  */
+.profile {
+    width: 80%;
+    margin: 80px auto 0;
+    padding-bottom: 32px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+.profile div {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #aaa;
+}
+
+.profile blockquote {
+    margin-left: 32px;
+}
+
+.profile h4 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.profile p {
+    font-weight: 300;
+}
+
+/* TABLE */
+.table {
+    
+}
