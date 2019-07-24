@@ -1,0 +1,28 @@
+
+.Tag {
+    padding: 0.1rem 0.6rem 0.26rem;
+    background-color: transparent;
+    font-size: 14px;
+    border-radius: 20px;
+    margin: 0 0.2rem;
+}
+
+.cowork {
+    border: 1px solid #ec7526;
+    color: #ec7526;
+}
+
+.tech {
+    border: 1px solid #266bec;
+    color: #266bec;
+}
+
+.life {
+    border: 1px solid #ec2699;
+    color: #ec2699;
+}
+
+.culture {
+    border: 1px solid #8226ec;
+    color: #8226ec;
+}

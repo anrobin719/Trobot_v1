@@ -1,53 +1,33 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 
-import PinRow from './PinRow/PinRow';
-import Loading from '../../../components/UI/Loading/Loading';
+import classes from './PinTable.css';
+import Tag from '../../../components/UI/Tag/Tag';
 
-class PinTable extends Component {
-    state = {
-        pins: [],
-        loading: true,
-        error: false
-    }
-
-    componentDidMount () {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(res => {
-                const pinData = res.data.slice(20, 26);
-                const updatePin = pinData.map( pin => {
-                    return {
-                        ...pin,
-                        tag: "cowork"
-                    };
-                });
-                this.setState({pin: updatePin, loading: false});
-            })
-            .catch(err => {
-                this.setState({error: true});
-            });
-    }
-
-    render() {
-        let pin = <Loading />
-
-        if(!this.state.loading) {
-            pin = this.state.pins.map( pin => {
-                return (
-                    <PinRow
-                        key={pin.id}
-                        heading={pin.title}
-                        tag={pin.tag} />
-                );
-            });
-        }
-
-        return(
-            <div>
-                {pin}
-            </div>
+const PinTable = ( props ) => {
+    console.log(props.tag);
+    let tags = props.tag.map( tag => {
+        return (
+            <Tag
+                key={tag}
+                tagType={tag}>{tag}</Tag>  
         );
-    }
+    });
+
+    return (
+        <div className={classes.PinTable}>
+            <div>
+               <h4>{props.heading}</h4>
+                <div>
+                    {tags}
+                </div> 
+            </div>
+
+            <div>
+                <span>🗑</span>
+            </div>
+            
+        </div>
+    );
 }
 
 export default PinTable;

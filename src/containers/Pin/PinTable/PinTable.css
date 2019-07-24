@@ -1,0 +1,25 @@
+.PinTable {
+    width: 60%;
+    padding: 24px 28px 28px 0;;
+    box-sizing: border-box;
+    margin-left: 10%;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    border-right: 1px solid rgb(230, 230, 230);
+    display: flex;
+    justify-content: space-between;
+}
+
+.PinTable h4 {
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 0 0.4rem 0.3rem;
+}
+
+.PinTable>div:nth-child(2) {
+    display: flex;
+    align-items: center;
+}
+
+.PinTable span {
+    cursor: pointer;
+}

@@ -11,8 +11,7 @@
 
 .inbox {
     width: 70%;
-    height: 100vh;
-    padding-top: 52px;
+    padding: 52px 0 400px;
     box-sizing: border-box;
     border: 1px solid #eee;
     margin: 0 auto;
@@ -26,7 +25,7 @@
     margin: 80px auto 0;
     padding-bottom: 32px;
     box-sizing: border-box;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #bbb;
     display: flex;
     align-items: center;
 }
@@ -51,6 +50,3 @@
 }
 
 /* TABLE */
-.table {
-    
-}
