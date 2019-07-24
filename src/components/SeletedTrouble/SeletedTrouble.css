@@ -1,0 +1,55 @@
+.SeletedTrouble {
+    height: 60vh;
+    padding: 10%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.SeletedTrouble h2 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.SeletedTrouble p {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 32px 0;
+}
+
+.footer {
+    position: absolute;
+    width: 80%;
+    height: 100px;
+    padding: 16px 0;
+    box-sizing: border-box;
+    border-top: 1px solid #ccc;
+    bottom: 0;
+    left: 10%;
+}
+
+.footer div {
+    padding: 0 10px;
+    margin-right: 10px;
+    height: 22px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.footer div:last-child {
+    float: right;
+    border: none;
+    margin: 0;
+}
+
+.footer div img {
+    height: 14px;
+    margin-right: 6px;
+}

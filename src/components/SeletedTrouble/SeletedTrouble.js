@@ -1,20 +1,19 @@
 import React from 'react';
 
-import classes from './Trouble.css';
+import classes from './SeletedTrouble.css';
 import Tag from '../UI/Tag/Tag';
 import thumb from '../../assets/images/thumb.svg';
 import pin from '../../assets/images/pin.svg';
 import share from '../../assets/images/share.svg';
 import comment from '../../assets/images/comment.svg';
 
-const Trouble = ( props ) => {
-
-
+const SeletedTrouble = ( props ) => {
     return (
-        <div className={classes.Trouble} onClick={props.click}>
+        <div className={classes.SeletedTrouble}>
             <article>
                 <h2>{props.heading}</h2>
                 <Tag tagType="cowork">{props.tag}</Tag>
+                <p>{props.contents}</p>
             </article>
 
             <footer className={classes.footer}>
@@ -27,4 +26,4 @@ const Trouble = ( props ) => {
     );
 }
 
-export default Trouble;
+export default SeletedTrouble;
