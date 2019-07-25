@@ -1,0 +1,16 @@
+.NewTrouble {
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.NewTrouble h3 {
+    font-size: 28px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.NewTrouble form {
+    margin-bottom: 48px;
+}

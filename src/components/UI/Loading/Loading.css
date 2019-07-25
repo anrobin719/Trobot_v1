@@ -1,12 +1,22 @@
 .Loading {
     height: 100vh;
     margin: 0;
+    background-color: rgba(255,255,255,.5);
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .loadingBar {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .loadingBar div {

@@ -9,10 +9,11 @@ import add from '../../assets/images/add.svg';
 import Loading from '../../components/UI/Loading/Loading';
 import Modal from '../../components/UI/Modal/Modal';
 import SeletedTrouble from '../../components/SeletedTrouble/SeletedTrouble';
+import NewTrouble from '../NewTrouble/NewTrouble';
 
 class Troubles extends Component {
     state = {
-        troubles: [],
+        troubles: null,
         loading: true,
         error: false,
         addPost: false,
@@ -74,29 +75,17 @@ class Troubles extends Component {
             });
         }
 
-        // let selectedTrouble = null
-        // if(this.state.seleted) {
-        //     selectedTrouble = (
-        //         <Modal show={this.state.seleted} click={this.closeselectedTroubleHandler}>
-        //             <SeletedTrouble
-        //                     heading={this.state.seleted.title}
-        //                     tag={this.state.seleted.tag}
-        //                     contents={this.state.seleted.body} />
-        //         </Modal>
-        //     );
-        // }
-
-        console.log(this.state.seleted);
         return (
             <div className={classes.Troubles}>
                 <div className={classes.inbox}>
                     <Modal show={this.state.addPost} click={this.cancelNewTroubleHandler}>
-                        {/* NEW POSTING FORM */}
+                        <NewTrouble show={this.state.addPost}/>
                     </Modal>
                     
                     {this.state.seleted ? (
                         <Modal show={this.state.seleted} click={this.closeselectedTroubleHandler}>
                             <SeletedTrouble
+                                    show={this.state.seleted}
                                     heading={this.state.seleted.title}
                                     tag={this.state.seleted.tag}
                                     contents={this.state.seleted.body} />
