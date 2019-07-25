@@ -27,7 +27,13 @@ class Troubles extends Component {
                 const updateTrouble = troubles.map( trb => {
                     return {
                         ...trb,
-                        tag: "cowork"
+                        tag: 'cowork',
+                        comments: {
+                            robin: "dignissimos aperiam dolorem qui",
+                            uptohai: "suscipit qui sint possimus cum quaerat",
+                            mung: "ipsam ut commodi dolor"
+                        },
+                        thumb: 2
                     };
                 });
                 this.setState({troubles: updateTrouble, loading: false});
@@ -75,6 +81,8 @@ class Troubles extends Component {
             });
         }
 
+        console.log(this.state.seleted);
+
         return (
             <div className={classes.Troubles}>
                 <div className={classes.inbox}>
@@ -88,7 +96,8 @@ class Troubles extends Component {
                                     show={this.state.seleted}
                                     heading={this.state.seleted.title}
                                     tag={this.state.seleted.tag}
-                                    contents={this.state.seleted.body} />
+                                    contents={this.state.seleted.body}
+                                    comments={this.state.seleted.comments} />
                         </Modal>
                     )
                     : null}

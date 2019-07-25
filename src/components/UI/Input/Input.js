@@ -15,7 +15,8 @@ const Input = ( props ) => {
                                 <input
                                     type="checkbox"
                                     value={val}
-                                    onChange={props.changed} />
+                                    onChange={props.changed}
+                                    style={props.style} />
                                 <span>{val}</span>
                             </div>
                             
@@ -28,6 +29,7 @@ const Input = ( props ) => {
                         className={classes.inputTag}
                         value={props.value}
                         onChange={props.changed}
+                        style={props.style}
                          />;
                     break;
                 default:
@@ -35,7 +37,8 @@ const Input = ( props ) => {
                         {...props.elementConfig}
                         className={classes.inputTag}
                         value={props.value}
-                        onChange={props.changed} />;
+                        onChange={props.changed}
+                        style={props.style} />;
             }
             break;
 
@@ -44,7 +47,7 @@ const Input = ( props ) => {
                 {...props.elementConfig}
                 className={classes.textareaTag}
                 onChange={props.changed}
-                style={{'height': props.height}}
+                style={props.style}
              />;
              break;
 
@@ -52,7 +55,8 @@ const Input = ( props ) => {
             inputElement = <input
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed}/>;
+                onChange={props.changed}
+                style={props.style}/>;
     }
 
     return (

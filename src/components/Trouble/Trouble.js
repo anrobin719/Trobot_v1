@@ -14,7 +14,7 @@ const Trouble = ( props ) => {
         <div className={classes.Trouble} onClick={props.click}>
             <article>
                 <h2>{props.heading}</h2>
-                <Tag tagType="cowork">{props.tag}</Tag>
+                <Tag tagType={props.tag}>{props.tag}</Tag>
             </article>
 
             <footer className={classes.footer}>
