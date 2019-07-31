@@ -14,7 +14,7 @@ const SeletedTrouble = ( props ) => {
     const addCommentHandler = () => {
 
     }
-    
+
     const commentsArray = [];
     for ( let commentId in props.comments) {
         commentsArray.push ({
@@ -42,34 +42,42 @@ const SeletedTrouble = ( props ) => {
                 <p>{props.contents}</p>
             </article>
 
-            <section>
-                <div>
-                    {comments}
-                </div>
-                <div className={classes.addComment}>
-                    <form onSubmit={addCommentHandler}>
-                        <Input
-                            elementType="input"
-                            elementconfig="type: text"
-                            value=""
-                            style={{
-                                height: '36px',
-                                width: 'calc(100% - 100px)',
-                                float: 'left',
-                                textAlign: 'left'
-                            }}
-                            // changed={(event) => this.inputChangeHandler(event, element.id)}
-                            />
-                        <Button btnType="submit">add</Button>
-                    </form>
-                </div>
-            </section>
 
             <footer className={classes.footer}>
                 <div><img src={thumb} alt="thumb" />Thumb</div>
                 <div><img src={pin} alt="pin" />Pin</div>
                 <div><img src={share} alt="share" />Share</div>
                 <div><img src={comment} alt="comment" />2</div>
+           
+                <section>
+                    <div className={classes.addComment}>
+                        <form onSubmit={addCommentHandler}>
+                            <Input
+                                elementType="input"
+                                elementconfig="type: text"
+                                value=""
+                                style={{
+                                    height: '34px',
+                                    width: 'calc(100%)',
+                                    float: 'left',
+                                    textAlign: 'left'
+                                }}
+                                // changed={(event) => this.inputChangeHandler(event, element.id)}
+                                />
+                            <Button
+                                btnType="submit"
+                                style= {{
+                                    position: 'absolute',
+                                    top: 0,
+                                    right: 0,
+                                    margin: '0 0 0 8px'
+                                }}>add</Button>
+                        </form>
+                    </div>
+                    <div className={classes.commentBox}>
+                        {comments}
+                    </div>
+                </section>
             </footer>
         </div>
     );

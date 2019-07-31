@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import classes from './SignIn.css';
+import { updateObject, checkValidity } from '../../../shared/utility'
 
 
 class SignIn extends Component {
@@ -19,7 +20,8 @@ class SignIn extends Component {
                     required: true,
                     isEmail: true
                 },
-                vaild: false
+                vaild: false,
+                touched: false
             },
             password: {
                 elementType: 'input',
@@ -32,10 +34,23 @@ class SignIn extends Component {
                     required: true,
                     minLength: 8
                 },
-                valid: false
+                valid: false,
+                touched: false
             }
         }
     }
+
+    inputChangedHandler (event, controlName) {
+        const updateControls = updateObject( this.state.controls, {
+            [controlName]: updateObject(this.state.controls[controlName], {
+                value: event.target.value,
+                valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+                touched: true
+            })
+        })
+        this.setState({controls: updateControls});
+    }
+
     render() {
         const formElementsArray = [];
         for (let key in this.state.controls) {
@@ -51,9 +66,12 @@ class SignIn extends Component {
                 label={formElement.id}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
+                configType={formElement.config.elementConfig.type}
                 value={formElement.config.value}
                 invalid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation} />            
+                shouldValidate={formElement.config.validation}
+                touched={formElement.config.touched}
+                changed={(event) => this.inputChangedHandler( event, formElement.id )} />            
         ));
 
         return (

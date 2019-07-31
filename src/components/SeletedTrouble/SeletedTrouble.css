@@ -17,11 +17,13 @@
 }
 
 .SeletedTrouble section {
-    width: 80%;
-    margin: 0 auto 80px;
+    width: 100%;
+    margin: 38px auto 80px;
+    box-sizing: border-box;
     /* bottom: 0;
     left: 10%; */
 }
+
 
 /* EACH COMMENT BOX */
 .comment {
@@ -52,24 +54,23 @@
 
 /* ADD NEW COMMENT */
 .addComment {
-    margin-bottom: 32px;
-    box-sizing: border-box;
+    position: relative;
 }
 
 /* FOOTER */
 
 .footer {
-    position: absolute;
+    /* position: absolute; */
+    margin: 0 auto;
     width: 80%;
-    height: 100px;
     padding: 16px 0;
     box-sizing: border-box;
     border-top: 1px solid #ccc;
-    bottom: 0;
-    left: 10%;
+    /* bottom: 0;
+    left: 10%; */
 }
 
-.footer div {
+.footer>div {
     padding: 0 10px;
     margin-right: 10px;
     height: 22px;
@@ -84,13 +85,13 @@
     cursor: pointer;
 }
 
-.footer div:last-child {
+.footer>div:last-child {
     float: right;
     border: none;
     margin: 0;
 }
 
-.footer div img {
+.footer>div>img {
     height: 14px;
     margin-right: 6px;
 }

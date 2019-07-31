@@ -4,6 +4,12 @@ import classes from './Input.css';
 
 const Input = ( props ) => {
     let inputElement = null;
+    const inputClasses = [];
+
+    if(props.invalid && props.shouldValidate && props.touched) {
+        inputClasses.push(classes.Invalid);
+    }
+
 
     switch(props.elementType) {
         case('input'): 
@@ -23,10 +29,12 @@ const Input = ( props ) => {
                     );
                 });
                     break;
-                case('text', 'email', 'password'):
+                case('text'):
+                case('email'):
+                case('password'):
                     inputElement = <input
                         {...props.elementConfig}
-                        className={classes.inputTag}
+                        className={[classes.inputTag].concat(inputClasses).join(' ')}
                         value={props.value}
                         onChange={props.changed}
                         style={props.style}
@@ -35,7 +43,7 @@ const Input = ( props ) => {
                 default:
                     inputElement = <input
                         {...props.elementConfig}
-                        className={classes.inputTag}
+                        className={[classes.inputTag].concat(inputClasses).join(' ')}
                         value={props.value}
                         onChange={props.changed}
                         style={props.style} />;
@@ -45,7 +53,7 @@ const Input = ( props ) => {
         case('textarea'):
             inputElement = <textarea
                 {...props.elementConfig}
-                className={classes.textareaTag}
+                className={[classes.textareaTag].concat(inputClasses).join(' ')}
                 onChange={props.changed}
                 style={props.style}
              />;
