@@ -3,13 +3,11 @@ import axios from '../../axios-post';
 
 import classes from './SeletedTrouble.css';
 import Tag from '../UI/Tag/Tag';
-import thumb from '../../assets/images/thumb.svg';
-import pin from '../../assets/images/pin.svg';
-import share from '../../assets/images/share.svg';
-import commentImg from '../../assets/images/comment.svg';
+import TroubleFooter from '../Trouble/TroubleFooter/TroubleFooter';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import { updateObject } from '../../shared/utility';
+import Loading from '../UI/Loading/Loading';
 
 class SeletedTrouble extends Component {
     state = {
@@ -52,17 +50,23 @@ class SeletedTrouble extends Component {
         console.log(this.props.whole);
 
         const updatedComments = updateObject(this.props.whole, {
-            comments: updateObject(this.props.whole.comment, {
-                ...this.props.whole.comments,
+            comments: updateObject(this.props.whole.comments, {
                 // 'robin' have to be replaced with userID
-                robin: this.state.controls.comments.value
+                uptohai: this.state.controls.comments.value
+            })
+        });
+
+        const clearInputValue = updateObject(this.state.controls, {
+            comments: updateObject(this.state.controls.comments, {
+                value: ''
             })
         });
 
         axios.put('/post/' + this.props.id + '.json', updatedComments)
         .then(res => {
             console.log(res);
-            this.setState({loading: false});
+            this.setState({loading: false, controls: clearInputValue});
+
         })
         .catch(err => this.setState({error: true}));
     }
@@ -102,7 +106,6 @@ class SeletedTrouble extends Component {
                     elementType={el.config.elementType}
                     elementconfig={el.config.elementConfig}
                     configType={el.config.elementConfig.type}
-                    label={el.id}
                     value={el.config.value}
                     dafaultValue={el.config.dafaultValue}
                     changed={(event) => this.inputChangeHandler(event, el.id)}
@@ -123,12 +126,12 @@ class SeletedTrouble extends Component {
                     <p>{this.props.contents}</p>
                 </article>
     
-    
                 <footer className={classes.footer}>
-                    <div><img src={thumb} alt="thumb" />Thumb</div>
-                    <div><img src={pin} alt="pin" />Pin</div>
-                    <div><img src={share} alt="share" />Share</div>
-                    <div><img src={commentImg} alt="comment" />2</div>
+                    <TroubleFooter style={{
+                        width: '100%',
+                        top: 0,
+                        left: 0
+                    }}/>
                
                     <section>
                         <div className={classes.addComment}>
@@ -138,8 +141,7 @@ class SeletedTrouble extends Component {
                                     btnType="submit"
                                     style= {{
                                         position: 'absolute',
-                                        bottom: '-100%',
-                                        transform: 'translateY(50%)',
+                                        top: 0,
                                         right: 0,
                                         margin: 0,
                                         borderRadius: '0 .25rem .25rem 0'
@@ -150,6 +152,7 @@ class SeletedTrouble extends Component {
                             {comments}
                         </div>
                     </section>
+                    {this.state.loading ? <Loading extraClass="modal"/> : null}
                 </footer>
             </div>
         );

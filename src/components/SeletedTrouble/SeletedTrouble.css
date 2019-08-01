@@ -54,45 +54,17 @@
 
 /* ADD NEW COMMENT */
 .addComment {
+    display: block;
     position: relative;
-    height: auto;
+    height: 34px;
 }
 
 /* FOOTER */
 
 .footer {
-    /* position: absolute; */
+    position: relative;
     margin: 0 auto;
     width: 80%;
     padding: 16px 0;
     box-sizing: border-box;
-    border-top: 1px solid #ccc;
-    /* bottom: 0;
-    left: 10%; */
-}
-
-.footer>div {
-    padding: 0 10px;
-    margin-right: 10px;
-    height: 22px;
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 12px;
-    line-height: 22px;
-    cursor: pointer;
-}
-
-.footer>div:last-child {
-    float: right;
-    border: none;
-    margin: 0;
-}
-
-.footer>div>img {
-    height: 14px;
-    margin-right: 6px;
 }

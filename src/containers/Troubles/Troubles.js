@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import axios from '../../axios-post';
 import Trouble from '../../components/Trouble/Trouble';
 import classes from './Troubles.css';
 import Button from  '../../components/UI/Button/Button';
@@ -10,33 +10,15 @@ import Loading from '../../components/UI/Loading/Loading';
 import Modal from '../../components/UI/Modal/Modal';
 import SeletedTrouble from '../../components/SeletedTrouble/SeletedTrouble';
 import NewTrouble from '../NewTrouble/NewTrouble';
+import * as actions from '../../store/actions/index';
 
 class Troubles extends Component {
     state = {
-        troubles: null,
-        loading: true,
-        error: false,
         addPost: false,
         seleted: null
     }
-    
     componentDidMount () {
-        axios.get('/post.json')
-            .then(res => {
-                console.log(res.data);
-                const fetchedTroubles = [];
-                for(let trb in res.data) {
-                    fetchedTroubles.push({
-                        ...res.data[trb],
-                        id: trb
-                    });
-                };
-                this.setState({troubles: fetchedTroubles, loading: false});
-                console.log(this.state.troubles);
-            })
-            .catch(err => {
-                this.setState({error: true});
-            });
+        this.props.onFetchTroubles();
     }
 
     addNewTroubleHandler = () => {
@@ -65,8 +47,8 @@ class Troubles extends Component {
 
     render() {
         let troubles = <Loading />
-        if (!this.state.loading) {
-            troubles = this.state.troubles.map( trb => {
+        if (!this.props.loading) {
+            troubles = this.props.trbs.map( trb => {
                 return (
                     <Trouble
                     key={trb.id}
@@ -77,15 +59,12 @@ class Troubles extends Component {
             });
         }
 
-        console.log(this.state.seleted);
-
         return (
             <div className={classes.Troubles}>
-                <div className={classes.inbox}>
                     <Modal show={this.state.addPost} click={this.cancelNewTroubleHandler}>
                         <NewTrouble show={this.state.addPost}/>
                     </Modal>
-                    
+
                     {this.state.seleted ? (
                         <Modal show={this.state.seleted} click={this.closeselectedTroubleHandler}>
                             <SeletedTrouble
@@ -99,9 +78,10 @@ class Troubles extends Component {
                     )
                     : null}
 
+                <div className={classes.inbox}>
                     {troubles}
                 </div>
-
+                
                <div className={classes.floatBtnBox}>
                     <Button
                         btnType="circleBtn"><img src={arrow_up} alt="arrow" /></Button>
@@ -115,4 +95,18 @@ class Troubles extends Component {
     }
 }
 
-export default Troubles;
+const mapStateToProps = state => {
+    return {
+        trbs: state.troubles.troubles,
+        error: state.troubles.error,
+        loading: state.troubles.loading
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchTroubles: () => dispatch(actions.fetchTroubles()),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Troubles);
