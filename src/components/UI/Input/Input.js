@@ -26,8 +26,8 @@ const Input = ( props ) => {
                                 <span>{val}</span>
                             </div>
                             
-                    );
-                });
+                        );
+                    });
                     break;
                 case('text'):
                 case('email'):
@@ -37,8 +37,7 @@ const Input = ( props ) => {
                         className={[classes.inputTag].concat(inputClasses).join(' ')}
                         value={props.value}
                         onChange={props.changed}
-                        style={props.style}
-                         />;
+                        style={props.style} />;
                     break;
                 default:
                     inputElement = <input
@@ -55,8 +54,7 @@ const Input = ( props ) => {
                 {...props.elementConfig}
                 className={[classes.textareaTag].concat(inputClasses).join(' ')}
                 onChange={props.changed}
-                style={props.style}
-             />;
+                style={props.style} />;
              break;
 
         default:
@@ -64,7 +62,7 @@ const Input = ( props ) => {
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed}
-                style={props.style}/>;
+                style={props.style} />;
     }
 
     return (

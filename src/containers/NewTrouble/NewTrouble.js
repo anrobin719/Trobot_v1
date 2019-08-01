@@ -78,17 +78,12 @@ class NewTrouble extends Component {
 
 
         // this test value data will be changed!
-        formData.comment = {
-            value: '4'
-        }
-        formData.thumb = {
-            value: '2'
-        }
+        formData.comments = {};
+        formData.thumb = {value: null};
 
         axios.post('/post.json', formData)
             .then(res => {
                 this.setState({loading: false});
-                this.props.history.push('/');
             })
             .catch(err => {
                 this.setState({error: true});

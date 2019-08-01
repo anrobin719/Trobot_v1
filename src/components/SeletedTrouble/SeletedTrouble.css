@@ -55,6 +55,7 @@
 /* ADD NEW COMMENT */
 .addComment {
     position: relative;
+    height: auto;
 }
 
 /* FOOTER */

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
+import axios from '../../axios-post';
 import Trouble from '../../components/Trouble/Trouble';
 import classes from './Troubles.css';
 import Button from  '../../components/UI/Button/Button';
@@ -21,26 +21,22 @@ class Troubles extends Component {
     }
     
     componentDidMount () {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
+        axios.get('/post.json')
             .then(res => {
-                const troubles = res.data.slice(0, 20);
-                const updateTrouble = troubles.map( trb => {
-                    return {
-                        ...trb,
-                        tag: 'cowork',
-                        comments: {
-                            robin: "dignissimos aperiam dolorem qui",
-                            uptohai: "suscipit qui sint possimus cum quaerat",
-                            mung: "ipsam ut commodi dolor"
-                        },
-                        thumb: 2
-                    };
-                });
-                this.setState({troubles: updateTrouble, loading: false});
+                console.log(res.data);
+                const fetchedTroubles = [];
+                for(let trb in res.data) {
+                    fetchedTroubles.push({
+                        ...res.data[trb],
+                        id: trb
+                    });
+                };
+                this.setState({troubles: fetchedTroubles, loading: false});
+                console.log(this.state.troubles);
             })
             .catch(err => {
                 this.setState({error: true});
-            })
+            });
     }
 
     addNewTroubleHandler = () => {
@@ -93,10 +89,11 @@ class Troubles extends Component {
                     {this.state.seleted ? (
                         <Modal show={this.state.seleted} click={this.closeselectedTroubleHandler}>
                             <SeletedTrouble
-                                    show={this.state.seleted}
+                                    whole={this.state.seleted}
+                                    id={this.state.seleted.id}
                                     heading={this.state.seleted.title}
                                     tag={this.state.seleted.tag}
-                                    contents={this.state.seleted.body}
+                                    contents={this.state.seleted.contents}
                                     comments={this.state.seleted.comments} />
                         </Modal>
                     )
