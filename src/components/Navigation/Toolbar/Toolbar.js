@@ -5,7 +5,7 @@ import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import classes from './Toolbar.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
-const Toolbar = () => (
+const Toolbar = ( props ) => (
     <header className={classes.Toolbar}>
         <div className={classes.inbox}>
             <div>
@@ -15,7 +15,8 @@ const Toolbar = () => (
                     to="/"
                     exact>⏁  Trobot</NavLink>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems
+                        isAuthenticated={props.isAuth} />
                 </nav>
             </div>
         </div>

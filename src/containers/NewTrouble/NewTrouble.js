@@ -119,7 +119,7 @@ class NewTrouble extends Component {
                     {this.state.loading ? <Loading extraClass="modal"/> : null}
                     {form}
                     <Button
-                        btnType="submit"
+                        btnStyle="submit"
                         // click={this.postHandler}
                         style={{
                             display: "block",

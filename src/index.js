@@ -10,9 +10,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './hoc/ScrollToTop/ScrollToTop';
 import troubles from './store/reducers/troubles';
+import auth from './store/reducers/auth';
 
 const rootReducer = combineReducers({
-    troubles: troubles
+    troubles: troubles,
+    auth: auth
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

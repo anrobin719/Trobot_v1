@@ -36,8 +36,9 @@ const Input = ( props ) => {
                         {...props.elementConfig}
                         className={[classes.inputTag].concat(inputClasses).join(' ')}
                         value={props.value}
+                        autoComplete="on"
                         onChange={props.changed}
-                        style={props.style} />;
+                        style={props.style}/>;
                     break;
                 default:
                     inputElement = <input

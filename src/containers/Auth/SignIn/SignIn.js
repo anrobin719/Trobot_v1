@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import classes from './SignIn.css';
 import { updateObject, checkValidity } from '../../../shared/utility'
+import * as actions from '../../../store/actions/index';
+import Loading from '../../../components/UI/Loading/Loading';
 
 
 class SignIn extends Component {
@@ -37,10 +41,17 @@ class SignIn extends Component {
                 valid: false,
                 touched: false
             }
-        }
+        },
+        isSignup: false
     }
 
-    inputChangedHandler (event, controlName) {
+    componentDidMount () {
+        if ( this.props.authRedirectPath !== '/' ) {
+            this.props.onSetAuthRedirectPath();
+        } 
+    }
+
+    inputChangedHandler = (event, controlName) => {
         const updateControls = updateObject( this.state.controls, {
             [controlName]: updateObject(this.state.controls[controlName], {
                 value: event.target.value,
@@ -49,6 +60,19 @@ class SignIn extends Component {
             })
         })
         this.setState({controls: updateControls});
+    }
+
+    submitHandler = (event) => {
+        event.preventDefault();
+        this.props.onAuth( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+    }
+
+    changeAuthToSignUpHandler = () => {
+        this.setState({isSignup: true});
+    }
+
+    changeAuthToSignInHandler = () => {
+        this.setState({isSignup: false});
     }
 
     render() {
@@ -74,23 +98,40 @@ class SignIn extends Component {
                 changed={(event) => this.inputChangedHandler( event, formElement.id )} />            
         ));
 
+        let errorMessage = null;
+        if (this.props.error) {
+            errorMessage = <p>{this.props.error.response.data.error.message}</p>
+        }
+
+        let authRedirect = null;
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirectPath}/>
+        }
+
         return (
             <div className={classes.SignIn}>
+                {authRedirect}
 
                 <div className={classes.inbox}>
 
                     <div className={classes.signBox}>
-                    <h2>Get started with Trobot!</h2>
-                        <form>
-                            {form}
-                            <div className={classes.btnBox}>
-                                <Button
-                                    btnType="submit">Sign in</Button>
-                                <Button
-                                    btnType="submitBorder">Join</Button>
-                            </div>
-                            
-                        </form>
+                        <h2>Get started with Trobot!</h2>
+                            {errorMessage}
+                            <form onSubmit={this.submitHandler}>
+                                {form}
+                                <div className={classes.btnBox}>
+                                    <Button
+                                        btnStyle="submit"
+                                        btnType="submit"
+                                        click={this.changeAuthToSignInHandler}>Sign in</Button>
+                                    <Button
+                                        btnStyle="submitBorder"
+                                        btnType="submit"
+                                        click={this.changeAuthToSignUpHandler}>Join</Button>
+                                </div>
+                            </form>
+
+                    { this.props.loading ? <Loading extraClass="modal"/> : null}
                     </div>
                     
                 </div>
@@ -100,4 +141,20 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

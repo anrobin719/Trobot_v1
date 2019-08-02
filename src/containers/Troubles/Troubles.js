@@ -84,9 +84,9 @@ class Troubles extends Component {
                 
                <div className={classes.floatBtnBox}>
                     <Button
-                        btnType="circleBtn"><img src={arrow_up} alt="arrow" /></Button>
+                        btnStyle="circleBtn"><img src={arrow_up} alt="arrow" /></Button>
                     <Button
-                        btnType="circleBtn"
+                        btnStyle="circleBtn"
                         click={this.addNewTroubleHandler}><img src={add} alt="add" /></Button>
                </div>
                
@@ -99,7 +99,8 @@ const mapStateToProps = state => {
     return {
         trbs: state.troubles.troubles,
         error: state.troubles.error,
-        loading: state.troubles.loading
+        loading: state.troubles.loading,
+        isAuthenticated: state.auth.token !== null
     };
 }
 

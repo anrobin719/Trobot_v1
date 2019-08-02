@@ -44,10 +44,7 @@ class SeletedTrouble extends Component {
 
     addCommentHandler = (event) => {
         event.preventDefault();
-
         this.setState({loading: true});
-
-        console.log(this.props.whole);
 
         const updatedComments = updateObject(this.props.whole, {
             comments: updateObject(this.props.whole.comments, {
@@ -64,9 +61,7 @@ class SeletedTrouble extends Component {
 
         axios.put('/post/' + this.props.id + '.json', updatedComments)
         .then(res => {
-            console.log(res);
             this.setState({loading: false, controls: clearInputValue});
-
         })
         .catch(err => this.setState({error: true}));
     }
@@ -138,7 +133,7 @@ class SeletedTrouble extends Component {
                             <form onSubmit={this.addCommentHandler}>
                                 {input}
                                 <Button
-                                    btnType="submit"
+                                    btnStyle="submit"
                                     style= {{
                                         position: 'absolute',
                                         top: 0,
