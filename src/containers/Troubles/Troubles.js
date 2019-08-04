@@ -12,6 +12,7 @@ import SeletedTrouble from '../../components/SeletedTrouble/SeletedTrouble';
 import NewTrouble from '../NewTrouble/NewTrouble';
 import * as actions from '../../store/actions/index';
 
+
 class Troubles extends Component {
     state = {
         addPost: false,
@@ -45,6 +46,10 @@ class Troubles extends Component {
         });
     }
 
+    moveToTopHandler = () => {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         let troubles = <Loading />
         if (!this.props.loading) {
@@ -52,8 +57,10 @@ class Troubles extends Component {
                 return (
                     <Trouble
                     key={trb.id}
+                    whole={trb}
                     heading={trb.title}
                     tag={trb.tag}
+                    comments={trb.comments}
                     click={() => this.getselectedTroubleHandler(trb)} />
                 );
             });
@@ -84,7 +91,8 @@ class Troubles extends Component {
                 
                <div className={classes.floatBtnBox}>
                     <Button
-                        btnStyle="circleBtn"><img src={arrow_up} alt="arrow" /></Button>
+                        btnStyle="circleBtn"
+                        click={this.moveToTopHandler}><img src={arrow_up} alt="arrow" /></Button>
                     <Button
                         btnStyle="circleBtn"
                         click={this.addNewTroubleHandler}><img src={add} alt="add" /></Button>

@@ -122,11 +122,14 @@ class SeletedTrouble extends Component {
                 </article>
     
                 <footer className={classes.footer}>
-                    <TroubleFooter style={{
-                        width: '100%',
-                        top: 0,
-                        left: 0
-                    }}/>
+                    <TroubleFooter
+                        comments={this.props.comments}
+                        // key={this.props.id}
+                        style={{
+                            width: '100%',
+                            top: 0,
+                            left: 0
+                        }}/>
                
                     <section>
                         <div className={classes.addComment}>

@@ -7,3 +7,8 @@ export {
     logout,
     setAuthRedirectPath
 } from './auth';
+
+export {
+    storePin,
+    fetchPins
+} from './pin';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './App.css';
 import Layout from './hoc/Layout/Layout';
@@ -9,24 +10,44 @@ import SignIn from './containers/Auth/SignIn/SignIn';
 import Pin from './containers/Pin/Pin';
 import SignOut from './containers/Auth/SignIn/SignOut/SignOut';
 
-
 class App extends Component {
   render() {
+
+    let routes = (
+      <Switch>
+          <Route path="/" exact component={Troubles}/>
+          <Route path="/about" component={About}/>
+          <Route path="/signIn" component={SignIn}/>
+          <Redirect to="/" />
+        </Switch>
+    );
+
+    if(this.props.isAuth) {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Troubles}/>
+          <Route path="/about" component={About}/>
+          <Route path="/pin" component={Pin}/>
+          <Route path="/signOut" component={SignOut}/>
+          <Redirect to="/" />
+        </Switch>
+      );
+    }
+    
     return (
       <div className={classes.App}>
         <Layout>
-          <Switch>
-            <Route path="/" exact component={Troubles}/>
-            <Route path="/about" component={About}/>
-            <Route path="/pin" component={Pin}/>
-            <Route path="/signIn" component={SignIn}/>
-            <Route path="/signOut" component={SignOut}/>
-            <Redirect to="/" />
-          </Switch>
+          {routes}
         </Layout>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(App);

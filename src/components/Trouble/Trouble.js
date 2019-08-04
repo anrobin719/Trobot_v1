@@ -6,7 +6,6 @@ import TroubleFooter from './TroubleFooter/TroubleFooter';
 
 const Trouble = ( props ) => {
 
-
     return (
         <div className={classes.Trouble}>
             <article onClick={props.click}>
@@ -14,7 +13,9 @@ const Trouble = ( props ) => {
                 <Tag tagType={props.tag}>{props.tag}</Tag>
             </article>
 
-            <TroubleFooter />
+            <TroubleFooter
+                trb={props.whole}
+                comments={props.comments} />
             
         </div>
     );

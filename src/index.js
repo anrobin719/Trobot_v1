@@ -11,10 +11,12 @@ import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './hoc/ScrollToTop/ScrollToTop';
 import troubles from './store/reducers/troubles';
 import auth from './store/reducers/auth';
+import pin from './store/reducers/pin';
 
 const rootReducer = combineReducers({
     troubles: troubles,
-    auth: auth
+    auth: auth,
+    pin: pin
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 import classes from './Pin.css';
 import PinTable from './PinTable/PinTable';
 import Loading from '../../components/UI/Loading/Loading';
 
 class Pin extends Component {
-    state = {
-        pins: [],
-        loading: true,
-        error: false
-    }
 
     componentDidMount () {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(res => {
-                const pinData = res.data.slice(20, 25);
-                const updatePin = pinData.map( pin => {
-                    return {
-                        ...pin,
-                        tag: ["cowork", "tech"]
-                    };
-                });
-                this.setState({pins: updatePin, loading: false});
-            })
-            .catch(err => {
-                this.setState({error: true});
-            });
+        this.props.onFetchPins(this.props.token, this.props.id);
     }
 
     render() {
         let pin = <Loading />
         
-        if(!this.state.loading) {
-            pin = this.state.pins.map( pin => {
+        if(!this.props.loading) {
+            pin = this.props.pins.map( pin => {
                 return (
                     <PinTable
                         key={pin.id}
@@ -64,4 +47,19 @@ class Pin extends Component {
     }
 }
 
-export default Pin;
+const mapStateToProps = state => {
+    return {
+        loading: state.pin.loading,
+        pins: state.pin.pins,
+        token: state.auth.token,
+        id: state.auth.userId
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchPins: (token, id) => dispatch(actions.fetchPins(token, id))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pin);
