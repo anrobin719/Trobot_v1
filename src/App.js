@@ -9,8 +9,13 @@ import About from './components/About/About';
 import SignIn from './containers/Auth/SignIn/SignIn';
 import Pin from './containers/Pin/Pin';
 import SignOut from './containers/Auth/SignIn/SignOut/SignOut';
+import * as actions from './store/actions/index';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onTryAutoSignIn();
+  }
+
   render() {
 
     let routes = (
@@ -50,4 +55,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignIn: () => dispatch(actions.checkAuthState())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
