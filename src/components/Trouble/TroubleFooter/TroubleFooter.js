@@ -15,8 +15,10 @@ class TroubleFooter extends Component {
     };
 
     storePinHandler = () => {
+
         const pinData = {
-            trb: this.props.trb
+            trb: this.props.trb,
+            userId: this.props.userId
         }
         console.log(pinData);
         this.props.onStorePin(this.props.token, pinData);
@@ -64,7 +66,8 @@ class TroubleFooter extends Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     };
 };
 

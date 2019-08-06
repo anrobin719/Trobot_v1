@@ -8,21 +8,24 @@ const initialState = {
 };
 
 const storePinStart = (state, action) => {
-    return {
-
-    };
+    return updateObject(state, {
+        loading: true
+    });
 };
 
 const storePinSuccess = (state, action) => {
-    return {
-
-    };
+    const newPin = updateObject(action.pinData, { pinId: action.pinId });
+    return updateObject(state, {
+        loading: false,
+        pins: state.pins.concat(newPin)
+    });
 };
 
 const storePinFail = (state, action) => {
-    return {
-
-    };
+    return updateObject(state, {
+        loading: false,
+        error: true
+    });
 };
 
 const fetchPinStart = (state, action) => {

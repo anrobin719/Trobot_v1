@@ -16,12 +16,14 @@ class Pin extends Component {
         let pin = <Loading />
         
         if(!this.props.loading) {
-            pin = this.props.pins.map( pin => {
+            const pins = this.props.pins;
+            console.log(pins);
+            pin = pins.map( pin => {
                 return (
                     <PinTable
-                        key={pin.id}
-                        heading={pin.title}
-                        tag={pin.tag} />
+                        key={pin.trb.id}
+                        heading={pin.trb.title}
+                        tag={pin.trb.tag} />
                 );
             });
         }

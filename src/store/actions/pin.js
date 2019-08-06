@@ -7,9 +7,11 @@ export const storePinStart = () => {
     };
 };
 
-export const storePinSuccess = () => {
+export const storePinSuccess = (id, pinData) => {
     return {
-        type: actionTypes.STORE_PIN_SUCCESS
+        type: actionTypes.STORE_PIN_SUCCESS,
+        pinId: id,
+        pinData: pinData
     };
 };
 
@@ -19,14 +21,14 @@ export const storePinFail = () => {
     };
 };
 
-export const storePin = ( token, data ) => {
+export const storePin = ( token, pinData ) => {
     return dispatch => {
         dispatch( storePinStart() );
 
-        axios.post('/pinData.json?auth=' + token, data)
+        axios.post('/pinData.json?auth=' + token, pinData)
             .then( res => {
-                console.log(res.trb);
-                dispatch( storePinSuccess(res) );
+                console.log(pinData);
+                dispatch( storePinSuccess(pinData.userId, pinData) );
             })
             .catch( err => {
                 dispatch ( storePinFail(err) );
@@ -40,10 +42,10 @@ export const fetchPinStart = () => {
     }
 };
 
-export const fetchPinSuccess = ( res ) => {
+export const fetchPinSuccess = ( pins ) => {
     return {
         type: actionTypes.FETCH_PIN_SUCCESS,
-        data: res
+        data: pins
     }
 };
 
@@ -54,15 +56,22 @@ export const fetchPinFail = ( err ) => {
     }
 };
 
-export const fetchPins = (token, id) => {
+export const fetchPins = (token, userId) => {
     return dispatch => {
         dispatch( fetchPinStart() );
 
-        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + id + '"';
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axios.get('/pinData.json' + queryParams)
             .then(res => {
                 console.log(res);
-                dispatch( fetchPinSuccess(res) );
+                const fetchPinsArray = [];
+                for(let key in res.data) {
+                    fetchPinsArray.push( {
+                        ...res.data[key],
+                        pinId: key
+                    });
+                }
+                dispatch( fetchPinSuccess(fetchPinsArray) );
             })
             .catch(err => {
                 dispatch( fetchPinFail(err) );
