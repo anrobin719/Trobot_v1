@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import classes from './PinTable.css';
 import Tag from '../../../components/UI/Tag/Tag';
+import * as actions from '../../../store/actions/index';
 
-const PinTable = ( props ) => {
+class PinTable extends Component {
+    // TAG MAPPING
     // console.log(props.tag);
     // let tags = props.tag.map( tag => {
     //     return (
@@ -13,22 +16,42 @@ const PinTable = ( props ) => {
     //     );
     // });
 
-    return (
-        <div className={classes.PinTable}>
-            <div>
-               <h4>{props.heading}</h4>
-               <Tag tagType={props.tag}>{props.tag}</Tag>
-                {/* <div>
-                    {tags}
-                </div>  */}
-            </div>
+    deletePinHandler = () => {
+        this.props.onDeletePin(this.props.token, this.props.storedPinId);
+    }
 
-            <div>
-                <span>🗑</span>
+    render() {
+        return (
+            <div className={classes.PinTable}>
+                <div>
+                   <h4>{this.props.heading}</h4>
+                   <Tag tagType={this.props.tag}>{this.props.tag}</Tag>
+                    {// TAG MAPPING
+                        /* <div>
+                        {tags}
+                    </div>  */}
+                </div>
+    
+                <div className={classes.deleteBtn} onClick={this.deletePinHandler}>
+                    <i className="material-icons">delete</i>
+                </div>
+                
             </div>
-            
-        </div>
-    );
+        );
+    }
 }
 
-export default PinTable;
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        userId: state.auth.userId
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onDeletePin: (token, pinId) => dispatch(actions.deletePin(token, pinId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PinTable);

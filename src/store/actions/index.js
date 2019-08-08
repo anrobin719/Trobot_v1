@@ -11,5 +11,6 @@ export {
 
 export {
     storePin,
-    fetchPins
+    fetchPins,
+    deletePin
 } from './pin';

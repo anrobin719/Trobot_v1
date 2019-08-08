@@ -114,7 +114,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchTroubles: () => dispatch(actions.fetchTroubles()),
+        onFetchTroubles: () => dispatch(actions.fetchTroubles())
     };
 }
 

@@ -23,15 +23,31 @@
     font-size: 12px;
     line-height: 22px;
     cursor: pointer;
+    transition: all .1s linear;
+}
+
+.footer div:hover {
+    background-color: rgba(236, 229, 247, 0.404);
 }
 
 .footer div:last-child {
     float: right;
     border: none;
     margin: 0;
+    background-color: #fff;
 }
 
 .footer div img {
     height: 14px;
     margin-right: 6px;
+}
+
+.footer div i {
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+div.btnActive {
+    color: #6a45e4;
+    font-weight: 900;
 }

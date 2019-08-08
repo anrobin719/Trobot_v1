@@ -68,13 +68,28 @@ export const fetchPins = (token, userId) => {
                 for(let key in res.data) {
                     fetchPinsArray.push( {
                         ...res.data[key],
-                        pinId: key
+                        storedPinId: key
                     });
                 }
                 dispatch( fetchPinSuccess(fetchPinsArray) );
             })
             .catch(err => {
                 dispatch( fetchPinFail(err) );
+            });
+    }
+}
+
+export const deletePin = ( token, pinId ) => {
+    return dispatch => {
+        console.log('delete button', pinId);
+        //axios.delete('/pinData.json?auth=' + this.props.token + '&orderBy="userId"&equalTo="' + this.props.userId + '"/' + this.props.storedPinId)
+        axios.delete('/pinData/' +  pinId + '.json?auth=' + token + '"')
+            .then(res => {
+                console.log(res);
+                // location reload
+            })
+            .catch(err => {
+                console.log('delete pin error!');
             });
     }
 }

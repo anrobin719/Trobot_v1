@@ -23,3 +23,7 @@
 .PinTable span {
     cursor: pointer;
 }
+
+.deleteBtn {
+    cursor: pointer;
+}

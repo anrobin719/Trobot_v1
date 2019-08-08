@@ -2,29 +2,45 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './TroubleFooter.css'
-import thumb from '../../../assets/images/thumb.svg';
-import pin from '../../../assets/images/pin.svg';
-import share from '../../../assets/images/share.svg';
-import commentImg from '../../../assets/images/comment.svg';
 import * as actions from '../../../store/actions/index';
 
 class TroubleFooter extends Component {
+    state = {
+        isPinClicked: false,
+        isThumbClicked: false
+    }
     // props.trbId = post id
-    switchActiveButtonHandler = () => {
+    thumbBtnHandler = () => {
         console.log('thumb button click');
+        this.setState( prevState => {
+            return {
+                isThumbClicked: !prevState.isThumbClicked
+            };
+        });
     };
 
     storePinHandler = () => {
-
-        const pinData = {
-            trb: this.props.trb,
-            userId: this.props.userId
+        this.setState( prevState => {
+            return {
+                isPinClicked: !prevState.isPinClicked
+            };
+        });
+        
+        console.log(this.props.trb);
+        if(!this.state.isPinClicked) {
+            const pinData = {
+                trb: this.props.trb,
+                userId: this.props.userId
+            }
+            this.props.onStorePin(this.props.token, pinData);
+        } else {
+            this.props.onDeletePin(this.props.token, this.props.storedPinId);
         }
-        console.log(pinData);
-        this.props.onStorePin(this.props.token, pinData);
+        
+
     };
 
-    shareButtonHandler = () => {
+    shareBtnHandler = () => {
         console.log('share button click');
     };
 
@@ -36,28 +52,44 @@ class TroubleFooter extends Component {
         // this should not be updated!
         // console.log(commentsArray);
         const commentsLength = commentsArray.length;
-    
-        let activeStyle = null;
+
+        const pinClass = [];
+        if(this.state.isPinClicked) {
+            pinClass.push(classes.btnActive);
+        } else {
+            pinClass.pop();
+        }
+        console.log(pinClass);
+        
+        const thumbClass = [];
+        if(this.state.isThumbClicked) {
+            thumbClass.push(classes.btnActive);
+        } else {
+            thumbClass.pop();
+        }
+        console.log(thumbClass);
+        
+        // console.log(this.state.isPinClicked);
     
         return(
             <div className={classes.footer} style={this.props.style}>
                     <div
-                        onClick={this.switchActiveButtonHandler}
-                        style={activeStyle}>
-                        <img src={thumb} alt="thumb" />Thumb
+                        onClick={this.thumbBtnHandler}
+                        className={thumbClass.join(' ')}>
+                        <i className="material-icons">thumb_up</i>Thumb
                     </div>
                     <div
-                        onClick={this.storePinHandler}>
-                        <img
-                            src={pin} alt="pin" />Pin
+                        onClick={this.storePinHandler}
+                        className={pinClass.join(' ')}>
+                        <i className="material-icons">input</i>Pin
                     </div>
                     <div
-                        onClick={this.shareButtonHandler}>
-                        <img src={share} alt="share" />Share
+                        onClick={this.shareBtnHandler}>
+                        <i className="material-icons">share</i>Share
                     </div>
                     <div
                         style={{cursor: 'auto'}}>
-                        <img src={commentImg} alt="comment" />{commentsLength}
+                        <i className="material-icons">mode_comment</i>{commentsLength}
                     </div>
             </div>
         );
@@ -73,7 +105,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStorePin: (token, pinData) => dispatch(actions.storePin(token, pinData))
+        onStorePin: (token, pinData) => dispatch(actions.storePin(token, pinData)),
+        onDeletePin: (token, pinId) => dispatch(actions.deletePin(token, pinId))
     };
 };
 
